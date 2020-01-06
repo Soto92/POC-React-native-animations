@@ -12,12 +12,12 @@ const Toggle = (props) => {
 
   const handlePress = () => {
     setOn(!isOn);
-    props.onToggle(isOn);
+    props.onToggle(!isOn);
  
     Animated.timing(
       animatedValue,
       {
-        toValue: isOn ? 0 : 32,
+        toValue: isOn ? 0 : 34,
         duration: 250,
         easing: Easing.linear,
         delay: 0,
@@ -28,18 +28,18 @@ const Toggle = (props) => {
       <TouchableOpacity
         activeOpacity={0.5}
         style={{
-          backgroundColor: isOn ? "limegreen" : "gray",
+          backgroundColor: isOn ? "#A9D4FC" : "#CFCFCF",
           width: 64,
           height: 32,
           borderRadius: 32,
-          padding: 4,
+          justifyContent:'center'
         }}
         onPress={() => handlePress()}
       >
         <Animated.View style={{
-          backgroundColor: 'white',
-          width: 24,
-          height: 24,
+          backgroundColor: isOn ? "#1E88E5" : "white",
+          width: 29,
+          height: 29,
           borderRadius: 32,
           transform: [{
             translateX: animatedValue,

@@ -5,27 +5,25 @@ import styles from './style';
 
 const CardList = props => {
   const list = useRef(null);
-  const renderItem = item => {
-
-    const previous = item.id === 0 ? 3 : (item.id) - 1;;
-    const next = item.id === (props.data.length - 1) ? 0 : (item.id) + 1;
-
+  const renderItem = (item, status) => {
+    const previous = item.id === 0 ? 3 : item.id - 1;
+    const next = item.id === props.data.length - 1 ? 0 : item.id + 1;
     return (
       <View style={styles.card}>
         <TouchableOpacity
           onPress={() =>
             list.current.scrollToIndex({index: previous, animated: true})
           }>
-            <View style={styles.button}/>
+          <View style={styles.button} />
         </TouchableOpacity>
 
-        <Text>{item.title}</Text>
+        {status ? <Text>{item.title}</Text> : null}
 
         <TouchableOpacity
           onPress={() =>
             list.current.scrollToIndex({index: next, animated: true})
           }>
-            <View style={styles.button}/>
+          <View style={styles.button} />
         </TouchableOpacity>
       </View>
     );
@@ -39,7 +37,7 @@ const CardList = props => {
         horizontal={true}
         initialScrollIndex={1}
         data={props.data}
-        renderItem={({item}) => renderItem(item)}
+        renderItem={({item}) => renderItem(item, props.showContent)}
         keyExtractor={item => item.id}
       />
     </View>
